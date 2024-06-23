@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "Reader"
 include(":app")
 include(":domain")
+include(":data")
