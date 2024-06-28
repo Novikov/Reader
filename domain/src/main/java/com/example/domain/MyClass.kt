@@ -1,4 +1,4 @@
 package com.example.domain
 
-class MyClass {
+class MyClass(val a: Int = 0) {
 }
