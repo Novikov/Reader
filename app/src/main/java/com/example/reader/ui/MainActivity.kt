@@ -2,6 +2,7 @@ package com.example.reader.ui
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,28 +13,29 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.domain.MyClass
+import com.example.reader.di.TestClass
 import com.example.reader.ui.screens.MainScreenContent
 import com.example.reader.ui.theme.ReaderTheme
 import org.koin.android.ext.android.get
 
 class MainActivity : ComponentActivity() {
 
-     val myClass : MyClass = get()
+     val myClass : TestClass = get()
 
     override fun onResume() {
         super.onResume()
-        Log.i("ASDJHAKSHDASD", "${myClass.a}")
-        Log.i("ASDJHAKSHDASD", "dfasdf")
+        Log.i("ASDJHAKSHDASD", "${myClass.b}")
+
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i("ASDJHAKSHDASD", "${myClass.a}")
+        Toast.makeText(this, "HOHOHOHO", Toast.LENGTH_SHORT).show()
         setContent {
-            myClass.a
             ReaderTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    MainScreenContent()
+                    MainScreenContent(myClass)
+                    Log.i("ASDJHAKSHDASD", "dfasdf")
                 }
             }
         }

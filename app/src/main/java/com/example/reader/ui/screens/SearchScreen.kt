@@ -24,14 +24,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.reader.di.TestClass
+import org.koin.androidx.compose.koinViewModel
 
-@Preview(showBackground = true)
-@Composable fun MainScreenContent() {
+@Composable fun MainScreenContent(testClass: TestClass, searchViewModel: SearchViewModel = koinViewModel()) {
     var text by remember { mutableStateOf("") }
-
+    Log.i("dsafasdfasdf", "MainScreenContent: ${testClass.b}")
+    searchViewModel.testMethod()
     Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+        modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
     ) {
         Column {
             TextField(
@@ -43,12 +44,11 @@ import androidx.compose.ui.unit.dp
                     .fillMaxWidth(),
                 maxLines = 1,
             )
-            Button(
-                shape = RoundedCornerShape(0.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                onClick = { Log.i("TAG", "MainScreenContent: ") }) {
+            Button(shape = RoundedCornerShape(0.dp),
+                   modifier = Modifier
+                       .fillMaxWidth()
+                       .padding(8.dp),
+                   onClick = { Log.i("TAG", "MainScreenContent: ") }) {
                 Text("Test 2")
             }
         }
