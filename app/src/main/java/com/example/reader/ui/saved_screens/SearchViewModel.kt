@@ -1,4 +1,4 @@
-package com.example.reader.ui.screens
+package com.example.reader.ui.saved_screens
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
