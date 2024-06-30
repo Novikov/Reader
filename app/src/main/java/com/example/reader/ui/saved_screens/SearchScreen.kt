@@ -1,4 +1,4 @@
-package com.example.reader.ui.screens
+package com.example.reader.ui.saved_screens
 
 import android.content.Context
 import android.util.Log

@@ -64,6 +64,7 @@ dependencies {
 
     //Compose
     implementation("io.insert-koin:koin-androidx-compose:3.5.6")
+    implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation(platform("androidx.compose:compose-bom:2023.08.00"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
