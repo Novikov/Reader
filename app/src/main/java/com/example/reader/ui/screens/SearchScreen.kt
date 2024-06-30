@@ -1,7 +1,7 @@
 package com.example.reader.ui.screens
 
 import android.content.Context
-import android.widget.Toast
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.google.firebase.firestore.FirebaseFirestore
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -44,8 +45,24 @@ fun MainScreenContent(context: Context, searchViewModel: SearchViewModel = koinV
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp),
-                onClick = { Toast.makeText(context, "test text", Toast.LENGTH_SHORT).show() }) {
-                Text("Test 2")
+                onClick = {
+                    val db = FirebaseFirestore.getInstance()
+                    val user = HashMap<String, Any>()
+                    user["firstName"] = "joe"
+                    user["lastName"] = "james"
+
+                    db.collection("users")
+                        .add(user)
+                        .addOnSuccessListener {
+                            Log.i("ASDJKHASKDJHASDASD", "oncreate $it ")
+                        }.addOnFailureListener {
+                            Log.i("ASDJKHASKDJHASDASD", "failure $it ")
+                        }
+                        .addOnCanceledListener {
+                            Log.i("ASDJKHASKDJHASDASD", "cancel")
+                        }
+                }) {
+                Text("Save User")
             }
         }
     }
