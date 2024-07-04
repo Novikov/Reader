@@ -35,9 +35,3 @@ fun ReaderApp(){
         }
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ReaderTheme {}
-}
