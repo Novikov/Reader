@@ -2,10 +2,14 @@ package com.example.reader.ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -120,4 +124,19 @@ fun InputField(
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType, imeAction = imeAction),
         keyboardActions = onAction
     )
+}
+
+@Composable
+fun SubmitButton(textId: String, loading: Boolean, validInputs: Boolean, onclick: () -> Unit) {
+    Button(
+        onClick = onclick,
+        modifier = Modifier
+            .padding(3.dp)
+            .fillMaxWidth(),
+        enabled = !loading && validInputs,
+        shape = CircleShape,
+    ) {
+        if (loading) CircularProgressIndicator(modifier = Modifier.size(25.dp))
+        else Text(text = textId, modifier = Modifier.padding(5.dp))
+    }
 }
