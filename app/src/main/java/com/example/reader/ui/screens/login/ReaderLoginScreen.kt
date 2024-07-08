@@ -41,7 +41,11 @@ fun ReaderLoginScreen(navController: NavHostController) {
 
 @Preview
 @Composable
-fun UserForm() {
+fun UserForm(
+    loading: Boolean = false,
+    isCreateAccount: Boolean = false,
+    onDone: (String, String) -> Unit = { _, _ -> }
+) {
     //Сохранение данных с учетом изменения конфигурации
     val email = rememberSaveable { mutableStateOf("") }
     val password = rememberSaveable { mutableStateOf("") }
@@ -66,9 +70,13 @@ fun UserForm() {
         PasswordInput(
             modifier = Modifier.focusRequester(passwordFocusRequest),
             passwordState = password,
-            enabled = true,
+            labelId = "Password",
+            enabled = !loading,
             passwordVisibility = passwordVisibility,
-            onAction = KeyboardActions { passwordFocusRequest.requestFocus() })
+            onAction = KeyboardActions {
+                if (!valid) return@KeyboardActions
+                onDone(email.value.trim(), password.value.trim())
+            })
     }
 }
 
