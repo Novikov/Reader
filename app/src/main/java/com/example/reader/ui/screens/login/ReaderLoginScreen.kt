@@ -55,7 +55,11 @@ fun ReaderLoginScreen(
                     }
                 }
             } else {
-                UserForm(loading = false, isCreateAccount = true)
+                UserForm(loading = false, isCreateAccount = true) { email, password ->
+                    viewModel.createUserWithEmailAndPassword(email = email, password = password) {
+                        navController.navigate(ReaderScreens.ReaderHomeScreen.name)
+                    }
+                }
             }
             Spacer(modifier = Modifier.height(15.dp))
             Row(
